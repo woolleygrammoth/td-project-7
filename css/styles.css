@@ -1,0 +1,249 @@
+/* ========================================================================================================================
+Typography & base layout 
+=========================================================================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+* {
+    font-family: 'Quicksand', sans-serif;
+    box-sizing: border-box;
+    color: var(--color-main-text);
+}
+
+body {
+    height: 100vh;
+}
+/* ========================================================================================================================
+Variables
+=========================================================================================================================== */
+:root {
+    --color-header: #7477BF;
+    --color-sidebar: #4D4C72;
+    --color-main: #7377BF;
+    --color-tab-gray: #FBFBFB;
+    --color-white: #FFFFFF;
+    --color-border: #E2E2E2;
+    --color-main-text: #808080;
+}
+/* ========================================================================================================================
+Grid layout
+=========================================================================================================================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 60px auto;
+    grid-template-areas: 
+    'hd hd'
+    'sd mn';
+}
+
+.top-header {
+    grid-area: hd; 
+    background-color: var(--color-header);
+}
+
+.sidebar {
+    grid-area: sd;
+    background-color: var(--color-sidebar);
+}
+
+.main-content {
+    grid-area: mn;
+}
+/* ========================================================================================================================
+Header
+=========================================================================================================================== */
+/* Flex layout */
+.top-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.top-header h4 {
+    flex-grow: 2;
+}
+
+.top-header > * {
+    margin: auto 0.5em;;
+}
+
+/* sizing items on the right side */
+.vertical-line {
+    width: 0;
+    height: 60%;
+    border-right: 1px solid var(--color-sidebar);
+}
+
+#profile-thumbnail {
+    width: 2.25em;
+    height: 2.25em;
+    border-radius: 50%;
+}
+
+.icon-bell {
+    width: 2em;
+}
+
+/* typogrophy */
+.top-header * {
+    color: var(--color-white);
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+.icon-bell {
+    transition: transform 0.25s cubic-bezier(.8,-0.34,0,1.64) 0s;
+}
+
+.icon-bell:hover {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+/* ========================================================================================================================
+Sidebar
+=========================================================================================================================== */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar * {
+    width: 1.5em;
+    margin: 1.5em auto;
+    height: 1.5em;
+}
+/* ========================================================================================================================
+Main Content & Widgets
+=========================================================================================================================== */
+/* ================================================ Dashboard tab & searchbar */
+.dashboard-tab {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    background-color: var(--color-tab-gray);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+}
+
+.dashboard-tab::after {/* erase bottom border under the tab */
+    content: '';
+    display: block;
+    position: absolute;
+    width: 115px; /* Just wide enough */
+    border: 1px solid var(--color-white);
+    bottom: -1px; 
+    left: 0px;
+}
+
+.tab {
+    padding: 1em;
+    margin: 0;
+    background-color: var(--color-white);
+    border-right: 1px solid var(--color-border);
+}
+
+#page-searchbar {
+    height: 2em;
+    margin: auto 2em;
+    padding: 1em;
+    width: 40%;
+    min-width: 168px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    outline-offset: 0;
+    transition: border 0.5s;
+}
+
+#page-searchbar::placeholder {
+    color: var(--color-border);
+}
+/* ================================================ Alert notification */
+.alert-bar {
+    background-color: var(--color-header);
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: transform 0.75s cubic-bezier(.4,-0.63,1,1.05) 0s;
+}
+
+.removed {
+    transform: translateX(180%);
+}
+
+.alert-bar > * {
+    color: var(--color-white);
+    margin: 0.75em;
+}
+
+.alert {
+    font-weight: 700;
+}
+
+.alert-text {
+    margin-right: auto;
+}
+
+.alert-close {
+    margin-left: auto;
+    background-color: var(--color-main);
+    border: none;
+}
+/* ================================================ Traffic line charts */
+.traffic-charts {
+    margin: 0;
+    padding: 1em;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+
+.traffic {
+    margin: 0 auto 0 0;
+    font-size: 0.75em;
+}
+
+.periods {
+    border: none;
+    outline: none;
+    background-color: var(--color-white);
+    font-size: 0.75em;
+}
+
+/* ========================================================================================================================
+Media queries
+=========================================================================================================================== */
+/* move sidebar & its contents at narrow screen size */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: auto;
+        grid-template-rows: 60px 60px auto;
+        grid-template-areas: 
+        'hd'
+        'sd'
+        'mn';
+    }
+
+    .sidebar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .sidebar * {
+        margin: auto;
+    }
+}
+
+
+
+
+

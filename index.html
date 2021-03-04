@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MyApp Dashboard</title>
+        <link rel='stylesheet' href='css/normalize.css'>
+        <link rel='stylesheet' href='css/styles.css'>
+    </head>
+    <body class='grid-container'>
+        <header class='top-header clearfix'>
+            <h4 class='app-title'>
+                <span class='bold'>My</span><span class='regular'>App<sup class='tm'>TM</sup></span>
+            </h4>
+            <img src='icons/icon-bell.svg' alt='bell icon' class='icon-bell'>
+            <div class='vertical-line'></div>
+            <img id='profile-thumbnail' src='images/graham&jenga.jpg' alt='profile thumbnail'>
+            <p>Graham Woolley</p>
+        </header>
+        <nav class='sidebar'>
+            <img src='icons/icon-dashboard.svg' alt='dashboard icon' id='icon-dashboard'>
+            <img src='icons/icon-members.svg' alt='members icon' id='icon-members'>
+            <img src='icons/icon-visits.svg' alt='visits icon' id='icon-visits'>
+            <img src='icons/icon-settings.svg' alt='settings icon' id='icon-settings'>
+        </nav>
+        <main class='main-content'>
+            <div class='dashboard-tab'>
+                <h4 class='tab'>Dashboard</h4>
+                <input type='search' id='page-searchbar' name='page-searchbar' placeholder="Search">
+            </div>
+            <div class='alert-bar'>
+                <h4 class='alert'>Alert</h4>
+                <p class='alert-text'>You forgot to turn the stove off when you left the house this morning!!!!</p>
+                <button class='alert-close'>x</button>
+            </div>
+            <section class='traffic-charts'>
+                <h4 class='traffic'>Traffic</h4>
+                <button class='periods hourly'>Hourly</button>
+                <button class='periods daily'>Daily</button>
+                <button class='periods weekly'>Weekly</button>
+                <button class='periods monthly'>Monthly</button>
+                <!-- <canvas class='traffic-line' id='hourly'></canvas>
+                <canvas class='traffic-line' id='daily'></canvas>
+                <canvas class='traffic-line' id='weekly'></canvas>
+                <canvas class='traffic-line' id='monthly'></canvas> -->
+
+                    
+            </section>
+
+
+            <p>This is my main content</p>
+        </main>
+
+
+
+
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script src='app.js'></script>
+    </body>
+</html>
