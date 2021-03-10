@@ -23,6 +23,10 @@ Variables
     --color-white: #FFFFFF;
     --color-border: #E2E2E2;
     --color-main-text: #808080;
+    --color-chart: #E2E3F6;
+    --color-chart-transparent: rgba(226, 227, 246, 0.6);
+    --color-box: #FBFBFB;
+    --color-email: #9697CD;
 }
 /* ========================================================================================================================
 Grid layout
@@ -203,6 +207,7 @@ Main Content & Widgets
     border-bottom: 1px solid var(--color-border);
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
 }
@@ -219,6 +224,145 @@ Main Content & Widgets
     font-size: 0.75em;
 }
 
+.traffic-line {
+    width: 100%;
+    padding-top: 0.5em;
+}
+/* ================================================ Daily traffic bar chart & Mobile users pie chart */
+.daily-traffic > h4, 
+.mobile-users > h4 {
+    font-size: 0.75em;
+    padding-left: 1em;
+}
+
+.daily-traffic, 
+.mobile-users {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1em;
+}
+
+/* ================================================ Social stats widget */
+.social-stats > h4 {
+    font-size: 0.75em;
+    padding-left: 1em;
+    margin-bottom: 0;
+}
+
+.wrapper {
+    padding: 1em 1em 1.5em;
+    border-bottom: 1px solid var(--color-border);
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-around; 
+    flex-wrap: wrap;
+}
+
+.social {
+    flex-basis: 250px;
+    background-color: var(--color-box);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0.5em 1em;
+}
+
+.social h3 {
+    color: var(--color-main);
+    font-size: 1em;
+    margin: 0;
+}
+
+.social p {
+    margin: 0;
+    font-size: 3em;
+}
+
+.social-site {
+    padding: 0 1em;
+    margin: 1em;
+}
+
+.social-icon {
+    width: 3.5em;
+    height: 3.5em;
+    vertical-align: auto;
+    padding: 0 1em;
+    margin: auto;
+    margin-left: 1em;
+    fill: var(--color-white);
+    background-color: var(--color-main);
+    border-radius: 50px;
+}
+
+/* ================================================ New members widget */
+.new-members, 
+.recent-activity {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.new-members > h4, 
+.recent-activity > h4 {
+    font-size: 0.75em;
+    padding-left: 1em;
+}
+
+.member {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 0.85em;
+}
+
+.member:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.profile-thumbnail {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.name-email > * {
+    margin: 0;
+}
+
+.email {
+    color: var(--color-email);
+    font-size: 0.75em;
+}
+
+.time-elapsed {
+    font-size: 0.75em;
+}
+
+.date, 
+.arrow {
+    margin-left: auto;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+/* ================================================ Message User widget */
+.message-user > h4, 
+.settings > h4 {
+    font-size: 0.75em;
+    padding-left: 1em;
+}
+
+.message-user {
+    padding-bottom: 1em;
+}
 /* ========================================================================================================================
 Media queries
 =========================================================================================================================== */
@@ -243,7 +387,29 @@ Media queries
     }
 }
 
+@media (min-width: 768px) {
+   .other-charts, 
+   .people, 
+   .bottom-row {
+       display: flex;
+       flex-direction: row;
 
+   }
+    .daily-traffic, 
+    .new-members, 
+    .message-user {
+        padding-right: 1em;
+        border-right: 1px solid var(--color-border);
+    }
+    .mobile-users, 
+    .daily-traffic, 
+    .new-members, 
+    .recent-activity, 
+    .message-user, 
+    .settings {
+        width: 50%; 
+    }
+}
 
 
 
