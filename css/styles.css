@@ -27,6 +27,7 @@ Variables
     --color-chart-transparent: rgba(226, 227, 246, 0.6);
     --color-box: #FBFBFB;
     --color-email: #9697CD;
+    --color-cancel: #B2B2B2;
 }
 /* ========================================================================================================================
 Grid layout
@@ -287,7 +288,7 @@ Main Content & Widgets
 .social-icon {
     width: 3.5em;
     height: 3.5em;
-    vertical-align: auto;
+    vertical-align: middle;
     padding: 0 1em;
     margin: auto;
     margin-left: 1em;
@@ -296,7 +297,7 @@ Main Content & Widgets
     border-radius: 50px;
 }
 
-/* ================================================ New members widget */
+/* ================================================ New members & recent activity widgets */
 .new-members, 
 .recent-activity {
     border-bottom: 1px solid var(--color-border);
@@ -354,20 +355,147 @@ Main Content & Widgets
 }
 
 /* ================================================ Message User widget */
+.bottom-row {
+    margin-bottom: 2em;
+}
+
 .message-user > h4, 
 .settings > h4 {
     font-size: 0.75em;
     padding-left: 1em;
+    margin-bottom: 0;
 }
 
 .message-user {
     padding-bottom: 1em;
+    padding-left: 1em;
+    display: flex; 
+    flex-direction: column;
+}
+
+.message-user > * {
+    width: 100%;
+    margin: 0.5em auto;
+    padding: 0.5em;
+}
+
+.message-user > input, 
+.message-user > textarea {
+    background-color: var(--color-box);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    outline-offset: 0;
+}
+
+textarea {
+    height: 6em;
+}
+
+button[type='submit'], 
+.cancel {
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-main);
+    border-radius: 5px;
+    font-size: 0.75em;
+    padding: 1em;
+}
+/* ================================================ settings widget */
+.toggle {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: space-between;
+    width: 75%;
+}
+
+.toggle > *, 
+.public > * {
+    margin: 1em;
+}
+
+.toggle > input {
+    margin-left: auto;
+}
+
+#timezone {
+    margin: 1.5em 0 0.6em 1em;
+    margin-left: 1em;
+    margin-top: 1.5em;
+    width: 90%;
+    padding: 0.5em;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-box);
+    border-radius: 5px;
+}
+
+.settings-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.settings-buttons > * {
+    width: 45%; 
+    margin: auto;
+}
+
+.cancel {
+    background-color: var(--color-cancel);
+}
+/* ================================================ toggle switches */
+.toggle input {
+    height: 0;
+    width: 0;
+}
+
+.slider {
+    position: relative;
+    height: 1.5em;
+    width: 4em;
+    background-color: var(--color-cancel);
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(.8,-0.34,0,1.64) 0s;
+}
+
+.checkbox + .slider::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: var(--color-sidebar);
+    position: absolute;
+    margin: auto;
+    top: 0; right: null; bottom: 0; left: 6%;
+    transition: all 0.4s cubic-bezier(.8,-0.34,0,1.64) 0s;
+}
+
+.checkbox + .slider::after {
+    content: 'ON';
+    position: relative;
+    color: var(--color-white);
+    top: 5%; right: 0; bottom: 0; left: 15%;
+    font-size: 0.75em;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(.8,-0.34,0,1.64) 0s;
+}
+
+.checkbox:checked + .slider::before {
+    background-color: var(--color-white);
+    transform: translate(250%);
+}
+
+.checkbox:checked + .slider::after {
+    opacity: 1;
+}
+
+.checkbox:checked + .slider {
+    background-color: var(--color-sidebar);
 }
 /* ========================================================================================================================
 Media queries
 =========================================================================================================================== */
 /* move sidebar & its contents at narrow screen size */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .grid-container {
         grid-template-columns: auto;
         grid-template-rows: 60px 60px auto;
@@ -384,6 +512,19 @@ Media queries
 
     .sidebar * {
         margin: auto;
+    }
+
+    .message-user {
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .message-user > * {
+        margin-right: 1em;
+        width: 90%;
+    }
+
+    .toggle {
+        width: 50%;
     }
 }
 

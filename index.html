@@ -180,9 +180,54 @@
             <section class='bottom-row'>
                 <div class='message-user'>
                     <h4>Message User</h4>
+                    <input type='search' name='search' placeholder='Search for user' class='user-search'>
+                    <textarea class='message-content' name='message-for-user' value='Message for user' placeholder='Message for user'></textarea>
+                    <button type='submit' name='send' value='send' class='send'>Send</button>
                 </div>
                 <div class='settings'>
                     <h4>Settings</h4>
+                    <label for='notifications' class='toggle'>
+                        <p>Send Email Notifications</p>
+                        <input type='checkbox' id='notifications' class='checkbox'>
+                        <span class='slider'></span>
+                    </label>
+                    <label for='public' class='toggle'>
+                        <p>Set Profile to Public</p>
+                        <input type='checkbox' id='public' class='checkbox'>
+                        <span class='slider'></span>
+                        
+                    </label>
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <select id="timezone" name="user_timezone">
+                        <option disabled selected>Select Time Zone</option>
+                        <option value="pst">PST</option>
+                        <option value="mst">MST</option>
+                        <option value="cst">CST</option>
+                        <option value="utc">UTC</option>
+                        <option value="utc+7">UTC+7</option>
+                    </select>
+                    <div class='settings-buttons'>
+                        <button class='save' type='submit'>Save</button>
+                        <button class='cancel'>Cancel</button>
+                    </div>
                 </div>
             </section>
         </main>

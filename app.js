@@ -175,7 +175,23 @@ const ctxPie = new Chart(document.querySelector('.users-pie'), {
         }
     }
 })
-
-
+// ===========================
+// ======= Message user widget
+//============================
+// simulate sending the message 
+const sendButton = document.querySelector('.send');
+sendButton.addEventListener('click', () => {
+    const user = document.querySelector('.user-search');
+    const message = document.querySelector('.message-content');
+    if (user.value === '') {
+        alert('Please select a user');
+    } else if (message.value === '') {
+        alert('Message cannot be empty');
+    } else {
+        alert(`Your message, "${message.value}", has been sent to ${user.value}. Thank you!`);
+        message.value = '';
+        user.value = '';
+    }
+});
 
 
