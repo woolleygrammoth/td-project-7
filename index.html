@@ -8,11 +8,21 @@
         <link rel='stylesheet' href='css/styles.css'>
     </head>
     <body class='grid-container'>
+        <div class='transparent'></div>
         <header class='top-header clearfix'>
             <h4 class='app-title'>
                 <span class='bold'>My</span><span class='regular'>App<sup class='tm'>TM</sup></span>
             </h4>
+            <div class='dropdown'>
             <img src='icons/icon-bell.svg' alt='bell icon' class='icon-bell'>
+                <ul class='dropdown-content'>
+                    <li>Your Krabby Patties are ready!</li>
+                    <li>Gary requests a conference call.</li>
+                    <li>Your paper on Squirrel scuba gear has been published!</li>
+                    <li>Squidward has filed a noise complaint. </li>
+                    <li>See the results of your Boating School Test!</li>
+                </ul>
+            </div>
             <div class='vertical-line'></div>
             <img id='profile-thumbnail' src='images/graham&jenga.jpg' alt='profile thumbnail'>
             <p>Graham Woolley</p>
@@ -67,7 +77,7 @@
                         </svg>
                         <div class='social-site'>
                             <h3>Twitter</h3>
-                            <p>10,345</p>
+                            <p>4,200</p>
                         </div>
                     </div>
                     <div class='social'>
@@ -76,7 +86,7 @@
                             </svg>
                         <div class='social-site'>
                             <h3>Facebook</h3>
-                            <p>8,739</p>
+                            <p>7,777</p>
                         </div>
                     </div>
                     <div class='social'>
@@ -100,7 +110,7 @@
                         </svg>
                         <div class='social-site'>
                             <h3>Google+</h3>
-                            <p>2,530</p>
+                            <p>6006</p>
                         </div>
                     </div>
                 </div>
@@ -181,6 +191,7 @@
                 <div class='message-user'>
                     <h4>Message User</h4>
                     <input type='search' name='search' placeholder='Search for user' class='user-search'>
+                    <ul class='users-list'></ul>
                     <textarea class='message-content' name='message-for-user' value='Message for user' placeholder='Message for user'></textarea>
                     <button type='submit' name='send' value='send' class='send'>Send</button>
                 </div>
@@ -195,27 +206,7 @@
                         <p>Set Profile to Public</p>
                         <input type='checkbox' id='public' class='checkbox'>
                         <span class='slider'></span>
-                        
                     </label>
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <select id="timezone" name="user_timezone">
                         <option disabled selected>Select Time Zone</option>
                         <option value="pst">PST</option>
@@ -231,15 +222,6 @@
                 </div>
             </section>
         </main>
-
-
-
-
-
-
-
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
         <script src='app.js'></script>
     </body>

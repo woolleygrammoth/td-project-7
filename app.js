@@ -1,14 +1,29 @@
+//color variables
+const chartColor = getComputedStyle(document.documentElement).getPropertyValue('--color-chart-transparent');
+const chartBorderColor = getComputedStyle(document.documentElement).getPropertyValue('--color-header');
+// =====================
+// ======= Notifications
+//======================
 // Close alert notification 
 const xButton = document.querySelector('.alert-close');
 xButton.addEventListener('click', () => {
     const div = document.querySelector('.alert-bar');
         div.classList.add('removed');
-
         setTimeout(() => {div.parentNode.removeChild(div)}, 750);
 })
-//color variables
-const chartColor = getComputedStyle(document.documentElement).getPropertyValue('--color-chart-transparent');
-const chartBorderColor = getComputedStyle(document.documentElement).getPropertyValue('--color-header');
+// Display notification dropdown menu on click
+const bell = document.querySelector('.icon-bell');
+const overlay = document.querySelector('.transparent');
+const dropdown = document.querySelector('.dropdown-content');
+bell.addEventListener('click', () => {
+    dropdown.style.display = 'block'; 
+    overlay.style.display = 'block';
+});
+// hide notification menu if any other click happens
+overlay.addEventListener('click', () => {
+    dropdown.style.display = 'none';
+    overlay.style.display = 'none';
+});
 // ==========================
 // ======= Web traffic charts
 //===========================
@@ -19,6 +34,10 @@ const ctx = {
     weekly: document.querySelector('#weekly'), 
     monthly: document.querySelector('#monthly')
 };
+//set height of the charts
+for (let chart in ctx) {
+    ctx[chart].height = 400;
+}
 const data = {
     hourly: {
         labels: [6, 9, 12, 15, 18, 21], 
@@ -175,9 +194,44 @@ const ctxPie = new Chart(document.querySelector('.users-pie'), {
         }
     }
 })
-// ===========================
-// ======= Message user widget
-//============================
+// ====================================================
+// ======= Message user widget ========================
+//=====================================================
+const users = ['Spongebob Squarepants', 'Patrick Star', 'Squidward Tentacles', 'Sandy Cheeks', 'Eugene Krabs', 'Pearl Krabs', 'Mrs Puff', 'Larry Lobster', 'Plankton', 'Gary Squarepants', 'Mermaid Man', 'Barnacle Boy'];
+// ======== User search autocomplete feature
+// =========================================
+const userSearch = document.querySelector('.user-search');
+const ul = document.querySelector('.users-list');
+// Display names that match event listener
+userSearch.addEventListener('keyup', () => {
+    // remove children of ul if they exist & hide ul
+    while (ul.firstElementChild) {
+        ul.removeChild(ul.firstElementChild);
+    }
+    ul.style.display = 'none';
+    // get current search value
+    const value = userSearch.value.toLowerCase();
+    // if value matches any names in the user list, create an li & append to ul
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].toLowerCase().includes(value) && value !== '') {
+            const li = document.createElement('li');
+            li.textContent = users[i];
+            ul.appendChild(li);
+        }
+    }
+    // if ul now has any children, display them
+    if (ul.firstElementChild) {
+        ul.style.display = 'block';
+    }
+});
+// Click on user in filter to autocomplete the search
+ul.addEventListener('click', (e) => {
+    if (e.target.tagName = 'LI') {
+        const text = e.target.textContent;
+        userSearch.value = text;
+        ul.style.display = 'none';
+    }
+});
 // simulate sending the message 
 const sendButton = document.querySelector('.send');
 sendButton.addEventListener('click', () => {
@@ -187,11 +241,37 @@ sendButton.addEventListener('click', () => {
         alert('Please select a user');
     } else if (message.value === '') {
         alert('Message cannot be empty');
+    } else if ( !(users.includes(user.value)) ) {
+        alert('User not found');
     } else {
         alert(`Your message, "${message.value}", has been sent to ${user.value}. Thank you!`);
         message.value = '';
         user.value = '';
     }
 });
-
-
+// ====================================================
+// ======= Settings widget functionality ==============
+//=====================================================
+const save = document.querySelector('.save');
+const cancel = document.querySelector('.cancel');
+// save button event listener - save in local storage
+save.addEventListener('click', () => {
+    const emailSetting = document.querySelector('#notifications').checked;
+    const publicSetting = document.querySelector('#public').checked;
+    const timeZone = document.querySelector('#timezone').value;
+    if (timeZone === 'Select Time Zone') {
+        alert('please select time zone');
+    } else {
+        localStorage.setItem('email', emailSetting);
+        localStorage.setItem('public', publicSetting);
+        localStorage.setItem('timezone', timeZone);
+        console.log(localStorage);
+    }
+});
+//cancel button event listener - dump local storage
+cancel.addEventListener('click', () => {
+    if (localStorage.length) {
+        localStorage.clear();       
+    }
+    console.log(localStorage);
+});

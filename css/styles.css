@@ -34,11 +34,12 @@ Grid layout
 =========================================================================================================================== */
 .grid-container {
     display: grid;
-    grid-template-columns: 80px auto;
-    grid-template-rows: 60px auto;
+    grid-template-columns: auto;
+    grid-template-rows: 60px 60px auto;
     grid-template-areas: 
-    'hd hd'
-    'sd mn';
+    'hd'
+    'sd'
+    'mn';
 }
 
 .top-header {
@@ -87,6 +88,7 @@ Header
 
 .icon-bell {
     width: 2em;
+    position: relative;
 }
 
 /* typogrophy */
@@ -110,19 +112,56 @@ Header
     transform: scale(1.2) rotate(-10deg);
 }
 
+/* ================================================ Notification bell dropdown menu  */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    z-index: 2;
+    top: 30px; 
+    min-width: 240px;
+    background-color: var(--color-sidebar);
+    z-index: 1;
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    display: none;
+}
+
+.dropdown-content > li {
+    padding: 1em;
+}
+
+.dropdown-content > li:hover {
+    background-color: var(--color-main);
+}
+
+.transparent {
+    color: transparent; 
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    display: none;
+    z-index: 1;
+}
 /* ========================================================================================================================
 Sidebar
 =========================================================================================================================== */
 .sidebar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+
 }
 
 .sidebar * {
     width: 1.5em;
-    margin: 1.5em auto;
+    margin: auto;
     height: 1.5em;
 }
+
 /* ========================================================================================================================
 Main Content & Widgets
 =========================================================================================================================== */
@@ -362,15 +401,19 @@ Main Content & Widgets
 .message-user > h4, 
 .settings > h4 {
     font-size: 0.75em;
-    padding-left: 1em;
+    padding-left: 0.5em;
     margin-bottom: 0;
 }
 
+.message-user > h4 {
+    margin-bottom: 1.65em;
+}
+
 .message-user {
-    padding-bottom: 1em;
-    padding-left: 1em;
+    padding: 0 0.5em 0.5em;
     display: flex; 
     flex-direction: column;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .message-user > * {
@@ -400,13 +443,43 @@ button[type='submit'],
     font-size: 0.75em;
     padding: 1em;
 }
+/* ================================================ User search filter */
+.user-search {
+    margin-bottom: 0;
+}
+
+.user-search::placeholder, 
+.message-content::placeholder {
+    color: lightgray;
+}
+
+.users-list {
+    display: none;
+    background-color: var(--color-sidebar);
+    list-style-type: none;
+    border-radius: 5px;
+    margin-top: 0;
+    width: 50%;
+    margin-right: 50%;
+    text-align: center;
+}
+
+.users-list > li {
+    color: var(--color-white);
+    padding: 0.75em 1em;
+    font-size: 0.75em;
+    margin-top: 0;
+}
+
+.users-list > li:hover {
+    background-color: var(--color-main);
+}
 /* ================================================ settings widget */
 .toggle {
     display: flex;
     flex-direction: row; 
     justify-content: flex-start;
-    align-items: space-between;
-    width: 75%;
+    width: 95%;
 }
 
 .toggle > *, 
@@ -414,7 +487,7 @@ button[type='submit'],
     margin: 1em;
 }
 
-.toggle > input {
+.toggle > .slider {
     margin-left: auto;
 }
 
@@ -450,8 +523,9 @@ button[type='submit'],
 
 .slider {
     position: relative;
+    flex-basis: 4em;
     height: 1.5em;
-    width: 4em;
+    /* width: 4em; */
     background-color: var(--color-cancel);
     border-radius: 25px;
     transition: all 0.4s cubic-bezier(.8,-0.34,0,1.64) 0s;
@@ -465,7 +539,7 @@ button[type='submit'],
     background-color: var(--color-sidebar);
     position: absolute;
     margin: auto;
-    top: 0; right: null; bottom: 0; left: 6%;
+    top: 0; right: null; bottom: 0; left: 7%;
     transition: all 0.4s cubic-bezier(.8,-0.34,0,1.64) 0s;
 }
 
@@ -494,48 +568,32 @@ button[type='submit'],
 /* ========================================================================================================================
 Media queries
 =========================================================================================================================== */
-/* move sidebar & its contents at narrow screen size */
-@media (max-width: 767px) {
-    .grid-container {
-        grid-template-columns: auto;
-        grid-template-rows: 60px 60px auto;
-        grid-template-areas: 
-        'hd'
-        'sd'
-        'mn';
-    }
-
-    .sidebar {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .sidebar * {
-        margin: auto;
-    }
-
-    .message-user {
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    .message-user > * {
-        margin-right: 1em;
-        width: 90%;
-    }
-
-    .toggle {
-        width: 50%;
-    }
-}
-
 @media (min-width: 768px) {
-   .other-charts, 
-   .people, 
-   .bottom-row {
+    .grid-container { 
+        grid-template-columns: 80px auto;
+        grid-template-rows: 60px auto;
+        grid-template-areas: 
+        'hd hd'
+        'sd mn';
+    }
+   
+    .sidebar {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .sidebar * {
+        margin: 1.5em auto;
+    }
+   
+
+    .other-charts, 
+    .people, 
+    .bottom-row {
        display: flex;
        flex-direction: row;
 
-   }
+    }
     .daily-traffic, 
     .new-members, 
     .message-user {
@@ -550,7 +608,19 @@ Media queries
     .settings {
         width: 50%; 
     }
+
+    .social {
+        margin: 0;
+        padding: 0 1em;
+    }
+
+    .message-user {
+        border-bottom: none;
+        padding-bottom: 1em;
+        padding-left: 1em;
+    }
+    
+    .message-user > h4 {
+        padding-left: 1em;
+    }    
 }
-
-
-
