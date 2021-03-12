@@ -255,16 +255,16 @@ sendButton.addEventListener('click', () => {
 const save = document.querySelector('.save');
 const cancel = document.querySelector('.cancel');
 // save button event listener - save in local storage
+const emailSetting = document.querySelector('#notifications');
+const publicSetting = document.querySelector('#public');
+const timeZone = document.querySelector('#timezone');
 save.addEventListener('click', () => {
-    const emailSetting = document.querySelector('#notifications').checked;
-    const publicSetting = document.querySelector('#public').checked;
-    const timeZone = document.querySelector('#timezone').value;
-    if (timeZone === 'Select Time Zone') {
+    if (timeZone.value === 'Select Time Zone') {
         alert('please select time zone');
     } else {
-        localStorage.setItem('email', emailSetting);
-        localStorage.setItem('public', publicSetting);
-        localStorage.setItem('timezone', timeZone);
+        localStorage.setItem('email', emailSetting.checked);
+        localStorage.setItem('public', publicSetting.checked);
+        localStorage.setItem('timezone', timeZone.value);
         console.log(localStorage);
     }
 });
@@ -274,4 +274,13 @@ cancel.addEventListener('click', () => {
         localStorage.clear();       
     }
     console.log(localStorage);
+    publicSetting.checked = false;
+    emailSetting.checked = false;
+    timeZone.value = document.querySelector('#timezone').firstElementChild.textContent;
 });
+// Set settings to the values previously saved in localStorage
+emailSetting.checked = localStorage.getItem('email');
+publicSetting.checked = localStorage.getItem('public');
+if (localStorage.getItem('timezone')) {
+    timeZone.value = localStorage.getItem('timezone');
+}

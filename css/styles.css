@@ -106,12 +106,22 @@ Header
 
 .icon-bell {
     transition: transform 0.25s cubic-bezier(.8,-0.34,0,1.64) 0s;
+    position: relative;
 }
 
 .icon-bell:hover {
     transform: scale(1.2) rotate(-10deg);
 }
 
+.icon-bell + span {
+    content: '';
+    width: 0.5em;
+    height: 0.5em;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 28px;
+    background-color: #85DB81;
+    border-radius: 50%;
+}
 /* ================================================ Notification bell dropdown menu  */
 .dropdown {
     position: relative;
